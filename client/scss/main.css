@@ -1,0 +1,23 @@
+.list-group .list-group-item {
+  width: 100%; }
+.list-group .list-group-separator::before {
+  width: 100%; }
+
+.tag {
+  text-transform: capitalize; }
+
+.amount {
+  font-size: 1.3em;
+  color: #3E9D42; }
+  .amount.expense {
+    color: #D32F2F; }
+
+.occured {
+  clear: right; }
+
+.btn-add {
+  position: fixed;
+  right: 12px;
+  bottom: 12px; }
+
+/*# sourceMappingURL=main.css.map */

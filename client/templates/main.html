@@ -1,0 +1,27 @@
+<div ng-controller="MainCtrl">
+  <div class="list-group">
+
+    <div ng-repeat="item in entries">
+      <div class="list-group-item">
+        <div class="pull-right amount" ng-class="{ 'expense': item.type == 'expense' }">
+          <span ng-if="item.type === 'expense'">-</span>
+          <span>{{ item.amount }} ฿</span>
+        </div>
+        <div class="pull-right text-muted occured"><small>{{ item.occured|date:'yyyy-MM-dd'}}</small></div>
+        <div class="row-content">
+          <h4 class="list-group-item-heading">
+            <span ng-repeat="tag in item.tags" class="tag"><span>{{ tag }}</span><span ng-if="!$last">, </span></span>
+          </h4>
+          <p class="list-group-item-text">{{ item.description }}</p>
+          <a class="btn btn-xs btn-info" ng-click="edit(item)">Edit</a>
+        </div>
+      </div>
+      <div class="list-group-separator"></div>
+    </div>
+
+  </div>
+
+  <button class="btn btn-fab btn-raised btn-danger btn-add" ng-click="add()">
+    <i class="mdi-content-add"></i>
+  </button>
+</div>

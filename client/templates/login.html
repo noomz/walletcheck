@@ -1,0 +1,31 @@
+<form class="form-horizontal" ng-controller="LoginCtrl">
+  <div class="alert alert-dismissable alert-danger" ng-show="error">
+    <strong>Error</strong>: {{ error.statusText }}
+  </div>
+
+  <fieldset>
+    <legend>Login</legend>
+
+    <div class="form-group">
+      <label for="input-user" class="col-lg-2 control-label">Username</label>
+      <div class="col-lg-10">
+         <input class="form-control" id="input-user" ng-model="user" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="input-pass" class="col-lg-2 control-label">Password</label>
+      <div class="col-lg-10">
+         <input class="form-control" id="input-pass" ng-model="pass" type="password" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-lg-12 text-center">
+        <button type="submit" class="btn btn-primary" ng-click="login()"
+                ng-disabled="saving">Submit</button>
+      </div>
+    </div>
+
+  </fieldset>
+</form>

@@ -1,0 +1,26 @@
+{
+  "name": "client",
+  "version": "0.0.0",
+  "authors": [
+    "Siriwat Uamngamsup <lazym0m3nt@gmail.com>"
+  ],
+  "license": "Unlicense",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0",
+    "restangular": "~1.5.1",
+    "angular-ui-router": "~0.2.15",
+    "bootstrap": "~3.3.4",
+    "jquery": "~2.1.4",
+    "bootstrap-material-design": "~0.3.0",
+    "ng-tags-input": "~2.3.0",
+    "angular-loading-bar": "~0.7.1",
+    "angular-cookie": "~4.0.8"
+  }
+}
