@@ -5,6 +5,7 @@ var express = require('express'),
     mongoose = require('mongoose'),
     multer = require('multer');
 
+var config = require('./config');
 var app = express();
 
 app.use(bodyParser.raw());
@@ -143,6 +144,7 @@ app.param('entry_id', function (req, res, next, entry_id) {
 app.put('/api/entries/:entry_id', function (req, res) {
     var entry = req.entry;
 
+    if (req.body.type) entry.type = req.body.type;
     if (req.body.occured) entry.occured = req.body.occured;
     if (req.body.amount) entry.amount = req.body.amount;
     if (req.body.description) entry.description = req.body.description;
