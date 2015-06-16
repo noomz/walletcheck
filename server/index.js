@@ -167,4 +167,34 @@ app.delete('/api/entries/:entry_id', function (req, res) {
     });
 });
 
+app.get('/api/total_balance', function (req, res) {
+    Entry.aggregate([
+        {
+            $group: {
+                _id: "$type",
+                sum: { $sum: "$amount" }
+            }
+        }
+    ]).exec(function (err, result) {
+        if (err) return res.status(500).end();
+
+        var income = 0, expense = 0;
+
+        result.forEach(function (item) {
+            if (item._id === 'income') {
+                income = item.sum;
+            }
+            else {
+                expense = item.sum;
+            }
+        });
+
+        res.send({
+            income: income,
+            expense: expense,
+            balance: income - expense
+        });
+    });
+});
+
 app.listen(3000);

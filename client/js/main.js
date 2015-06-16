@@ -50,6 +50,31 @@ angular.module('walletcheck', [
     });
 })
 
+.directive('ripple', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            jQuery.material.ripples(element);
+        }
+    }
+})
+
+.service('Balance', function (Restangular) {
+    var balance = null;
+
+    return {
+        get: function () {
+            if (!balance) {
+                this.refresh();
+            }
+            return balance;
+        },
+        refresh: function () {
+            balance = Restangular.one('total_balance').get().$object;
+        }
+    };
+})
+
 .service('Auth', function (ipCookie, Restangular) {
     return {
         user: null,
@@ -74,10 +99,23 @@ angular.module('walletcheck', [
     };
 })
 
-.controller('NavCtrl', function ($scope, $state) {
+.controller('NavCtrl', function ($scope, $state, Auth, Balance, $timeout) {
     $scope.refresh = function () {
         $state.go('main', {}, { reload: true });
     };
+
+    $scope.balanceClass = function () {
+        var balance = $scope.balance.balance;
+        if (balance > 500) return 'label-success';
+        if (balance > 100) return 'label-warning';
+        if (balance <= 0) return 'label-danger';
+    }
+
+    function fetchBalance() {
+        if (Auth.isLoggedIn()) $scope.balance = Balance.get();
+        $timeout(fetchBalance, 5000);
+    }
+    fetchBalance();
 })
 
 .controller('LoginCtrl', function ($scope, $state, Auth, ipCookie, Restangular) {
@@ -110,19 +148,24 @@ angular.module('walletcheck', [
     };
 })
 
-.controller('MainCtrl', function ($scope, $state, Auth, Restangular) {
+.controller('MainCtrl', function ($scope, $state, Auth, Restangular, Balance, $timeout) {
     if (!Auth.isLoggedIn()) return $state.go('login');
 
     var baseEntries = Restangular.all('entries');
     $scope.entries = [];
     $scope.entries = baseEntries.getList().$object;
+    Balance.refresh();
 
     $scope.add = function () {
-        $state.go('add');
+        $timeout(function () {
+            $state.go('add');
+        }, 250);
     };
 
     $scope.edit = function (entry) {
-        $state.go('edit', { entry_id: entry._id });
+        $timeout(function () {
+            $state.go('edit', { entry_id: entry._id });
+        }, 250);
     };
 })
 

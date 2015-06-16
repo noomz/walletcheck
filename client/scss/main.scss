@@ -1,3 +1,18 @@
+body {
+  padding-top: 72px;
+}
+
+.navbar {
+  &.navbar-default {
+    background-color: #495BC0;
+  }
+
+  .label {
+    font-size: 100%;
+    margin-left: 16px;
+  }
+}
+
 .list-group {
   .list-group-item {
     width: 100%;
@@ -6,6 +21,10 @@
   .list-group-separator::before {
     width: 100%;
   }
+}
+
+.entry-item {
+  cursor: pointer;
 }
 
 .tag {
