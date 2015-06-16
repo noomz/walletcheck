@@ -34,7 +34,7 @@ angular.module('walletcheck', [
         })
     ;
 
-    RestangularProvider.setBaseUrl('http://localhost:3000/api');
+    RestangularProvider.setBaseUrl(config.API_BASEPATH);
     RestangularProvider.setRestangularFields({
         id: '_id'
     });

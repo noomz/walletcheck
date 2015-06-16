@@ -1,5 +1,5 @@
 'use strict';
 
 var config = config || {
-    API_BASEPATH: 'http://localhost:3000'
+    API_BASEPATH: 'http://localhost:3000/api'
 };
