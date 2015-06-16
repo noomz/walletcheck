@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
 
-mongoose.connect('mongodb://localhost/walletcheck');
+mongoose.connect(config.mongo);
 
 var EntrySchema = mongoose.Schema({
     type: String,
